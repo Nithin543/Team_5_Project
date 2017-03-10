@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         // and pass the context, which is the current activity.
         SQLiteDatabase db = LogReader1.getReadableDatabase();
 
-        Cursor logCursor = db.rawQuery("SELECT name, Time_Used, app_Image FROM logs", null);
+        Cursor logCursor = db.rawQuery("SELECT rowid _id,name,Time_Used,app_Image FROM logs", null);
         LogCursorAdapter logAdapter = new LogCursorAdapter(this, logCursor);
         ListView lvlogItems = (ListView) findViewById(R.id.list_item);
         lvlogItems.setAdapter((logAdapter));

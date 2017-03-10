@@ -35,7 +35,7 @@ public class LogCursorAdapter extends CursorAdapter {
 
 
         String NAME = cursor.getString(cursor.getColumnIndexOrThrow("name"));
-        int TIME = cursor.getInt(cursor.getColumnIndexOrThrow("Time_Used"));
+        String TIME = cursor.getString(cursor.getColumnIndexOrThrow("Time_Used"));
         byte[] IMAGE = cursor.getBlob(cursor.getColumnIndexOrThrow("app_Image"));
         Bitmap bitmap = BitmapFactory.decodeByteArray(IMAGE, 0, IMAGE.length);
 
