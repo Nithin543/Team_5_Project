@@ -15,6 +15,7 @@ public class LogContract {
         public final static String Table_Name = "logs";
         public final static String Coloumn_Name_Of_Application = "name";
         public final static String Coloumn_Time_Used = "Time_Used";
+        public final static String Coloumn_Image = "app_Image";
 
     }
 }

@@ -6,9 +6,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 
+import static com.example.cyclone.cyclone_1.data.LogContract.logEntry.Coloumn_Image;
 import static com.example.cyclone.cyclone_1.data.LogContract.logEntry.Coloumn_Name_Of_Application;
 import static com.example.cyclone.cyclone_1.data.LogContract.logEntry.Coloumn_Time_Used;
 import static com.example.cyclone.cyclone_1.data.LogContract.logEntry.Table_Name;
+import static java.sql.Types.BLOB;
 
 /**
  * Created by ALAAP on 3/2/2017.
@@ -27,21 +29,28 @@ public class LogReader extends SQLiteOpenHelper {
 
 
     public void onCreate(SQLiteDatabase db) {
-         final String SQL_CREATE_ENTRIES = "CREATE TABLE " + Table_Name + "( "
-                + Coloumn_Name_Of_Application + " TEXT ,"
-                + Coloumn_Time_Used + " INTEGER " + " );";
+         final String SQL_CREATE_ENTRIES = " CREATE TABLE " + Table_Name + "("
+                + Coloumn_Name_Of_Application + " TEXT,"
+                + Coloumn_Time_Used + " INTEGER,"
+                 + Coloumn_Image + " BLOB);";
         db.execSQL(SQL_CREATE_ENTRIES);
 
     }
 
-    public void insertData(String appname, int appusagetime) {
+    public void insertData(String appname, int appusagetime, byte[] image) {
+
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(Coloumn_Name_Of_Application, appname);
         contentValues.put(Coloumn_Time_Used, appusagetime);
+        contentValues.put(Coloumn_Image, image);
         db.insert(Table_Name, null, contentValues);
     }
 
+   /* public void updateData(String appname, int appusagetime, byte[] image){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.rawQuery("update " + Table_Name + " set Time_Used = " + appusagetime + " where name = " + "'"  + appname + "'",null);
+    }*/
 
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
