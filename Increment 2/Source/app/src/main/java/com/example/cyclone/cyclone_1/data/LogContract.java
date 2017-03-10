@@ -1,4 +1,5 @@
 package com.example.cyclone.cyclone_1.data;
+
 import android.provider.BaseColumns;
 
 
@@ -7,11 +8,12 @@ import android.provider.BaseColumns;
  */
 
 public class LogContract {
-    private LogContract() {}
+    private LogContract() {
+    }
 
     public static final class logEntry implements BaseColumns {
 
-        public final static String ID = BaseColumns._ID;
+        public final static String Coloumn_name_ID = "_ID";
         public final static String Table_Name = "logs";
         public final static String Coloumn_Name_Of_Application = "name";
         public final static String Coloumn_Time_Used = "Time_Used";

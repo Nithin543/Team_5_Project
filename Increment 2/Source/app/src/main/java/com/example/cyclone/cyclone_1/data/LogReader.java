@@ -4,11 +4,14 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.BaseColumns;
 
 
+import static android.provider.BaseColumns._ID;
 import static com.example.cyclone.cyclone_1.data.LogContract.logEntry.Coloumn_Image;
 import static com.example.cyclone.cyclone_1.data.LogContract.logEntry.Coloumn_Name_Of_Application;
 import static com.example.cyclone.cyclone_1.data.LogContract.logEntry.Coloumn_Time_Used;
+import static com.example.cyclone.cyclone_1.data.LogContract.logEntry.Coloumn_name_ID;
 import static com.example.cyclone.cyclone_1.data.LogContract.logEntry.Table_Name;
 import static java.sql.Types.BLOB;
 
@@ -21,18 +24,18 @@ public class LogReader extends SQLiteOpenHelper {
     public final static String DATABASE_NAME = "Logs";
 
 
-    public LogReader(Context context){
+    public LogReader(Context context) {
 
-        super(context,DATABASE_NAME,null,DATABASE_VERSION);
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
 
-
     public void onCreate(SQLiteDatabase db) {
-         final String SQL_CREATE_ENTRIES = " CREATE TABLE " + Table_Name + "("
+        final String SQL_CREATE_ENTRIES = " CREATE TABLE " + Table_Name + "("
+                + Coloumn_name_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + Coloumn_Name_Of_Application + " TEXT,"
                 + Coloumn_Time_Used + " INTEGER,"
-                 + Coloumn_Image + " BLOB);";
+                + Coloumn_Image + " BLOB);";
         db.execSQL(SQL_CREATE_ENTRIES);
 
     }
