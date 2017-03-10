@@ -5,18 +5,21 @@ import android.app.usage.UsageStatsManager;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 
 import java.util.List;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
+import static java.security.AccessController.getContext;
+
 
 public class MainActivity extends AppCompatActivity {
 
-    DbOperations myDb;
 
     private static final String TAG = "";
 
@@ -27,14 +30,18 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        myDb = new DbOperations(this);
-
-        get();
+        try {
+            get();
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 
-public void get() {
+public void get() throws PackageManager.NameNotFoundException {
     //  Creating an object for UsageStates class(Contains usage statistics for an app package for specific time range)
+    ImageView imageView = (ImageView)findViewById(R.id.image1);
+
     Context context = this;
 
     // variable for Package Name
@@ -82,14 +89,16 @@ public void get() {
 
                     applicationInfo = packageManager.getApplicationInfo(PackageName, 0);
 
+
             } catch (final PackageManager.NameNotFoundException e) {}
+
+            Drawable icon = packageManager.getApplicationIcon("com.example.cyclone.cyclone_1");
+            imageView.setImageDrawable(icon);
 
 
             AppName = (String)((applicationInfo != null) ? packageManager.getApplicationLabel(applicationInfo) : "???");
 
-            Log.i("BAC", "PackageName :   " + AppName + " Time : " + AppUsageTime );
-
-            myDb.insertData(AppName,AppUsageTime);
+            Log.i("BAC", "PackageName :   " + PackageName + " Time : " + AppUsageTime );
 
 
 // d3 js and pi chart
