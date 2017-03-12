@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.media.Image;
 import android.text.Layout;
 import android.view.LayoutInflater;
@@ -40,7 +41,9 @@ public class LogCursorAdapter extends CursorAdapter {
         Bitmap bitmap = BitmapFactory.decodeByteArray(IMAGE, 0, IMAGE.length);
 
         text_view_name.setText(NAME);
-        text_view_time.setText(TIME);
+        text_view_time.setText(TIME +"min");
+        image_view.setBackgroundColor(Color.TRANSPARENT);
+        image_view.setLayerType(image_view.LAYER_TYPE_SOFTWARE, null);
         image_view.setImageBitmap(bitmap);
     }
 }

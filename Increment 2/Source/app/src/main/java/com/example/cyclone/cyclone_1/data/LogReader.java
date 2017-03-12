@@ -50,10 +50,10 @@ public class LogReader extends SQLiteOpenHelper {
         db.insert(Table_Name, null, contentValues);
     }
 
-   /* public void updateData(String appname, int appusagetime, byte[] image){
+    public void updateData(String appname, int appusagetime, byte[] image){
         SQLiteDatabase db = this.getWritableDatabase();
-        db.rawQuery("update " + Table_Name + " set Time_Used = " + appusagetime + " where name = " + "'"  + appname + "'",null);
-    }*/
+        db.rawQuery("update " + Table_Name + " set Time_Used = " + appusagetime  +" where name = " + "'"  + appname + "'",null);
+    }
 
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

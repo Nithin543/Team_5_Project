@@ -45,9 +45,9 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences wmbPreference = PreferenceManager.getDefaultSharedPreferences(this);
 
 
-        // boolean isFirstRun = wmbPreference.getBoolean("FIRSTRUN", true);
+        boolean isFirstRun = wmbPreference.getBoolean("FIRSTRUN", true);
 
-      /*  if (isFirstRun) {
+        if (isFirstRun) {
             try {
                 get();
             } catch (PackageManager.NameNotFoundException e) {
@@ -58,16 +58,13 @@ public class MainActivity extends AppCompatActivity {
             editor.commit();
         } else {
             try {
-                get();
+                get1();
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
             }
-        } */
-        try {
-            get();
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
         }
+
+
         displayDatabaseInfo();
         //LogReader mDbHelper = new LogReader(this);
 
@@ -81,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         // and pass the context, which is the current activity.
         SQLiteDatabase db = LogReader1.getReadableDatabase();
 
-        Cursor logCursor = db.rawQuery("SELECT rowid _id,name,Time_Used,app_Image FROM logs", null);
+        Cursor logCursor = db.rawQuery("SELECT rowid _id,name,Time_Used,app_Image FROM logs ORDER BY Time_Used DESC", null);
         LogCursorAdapter logAdapter = new LogCursorAdapter(this, logCursor);
         ListView lvlogItems = (ListView) findViewById(R.id.list_item);
         lvlogItems.setAdapter((logAdapter));
@@ -203,7 +200,8 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-  /*  public void get1() throws PackageManager.NameNotFoundException {
+
+    public void get1() throws PackageManager.NameNotFoundException {
         //  Creating an object for UsageStates class(Contains usage statistics for an app package for specific time range)
         Context context = this;
 
@@ -255,7 +253,7 @@ public class MainActivity extends AppCompatActivity {
                 } catch (final PackageManager.NameNotFoundException e) {
                 }
                 Drawable icon = packageManager.getApplicationIcon(PackageName);
-                Bitmap bitmap = ((BitmapDrawable)icon).getBitmap();
+                Bitmap bitmap = ((BitmapDrawable) icon).getBitmap();
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
                 byte[] image = stream.toByteArray();
@@ -265,10 +263,13 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("BAC", "PackageName :   " + AppName + " Time : " + AppUsageTime);
 
 
-                LogReader1.updateData(AppName, AppUsageTime, image );
-  */
+                LogReader1.updateData(AppName, AppUsageTime, image);
+
 
 // d3 js and pi chart
+            }
+        }
+    }
 }
 
 

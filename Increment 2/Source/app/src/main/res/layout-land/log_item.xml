@@ -19,14 +19,16 @@
         android:paddingLeft="30dp"
         android:paddingTop="10dp"
         android:textSize="15dp"
-        tools:ignore="RtlSymmetry" />
+        tools:ignore="RtlSymmetry"
+        android:layout_weight="0.89" />
 
     />
 
     <TextView
 
         android:id="@+id/text_view_time"
-        android:layout_width="match_parent"
-        android:layout_height="33dp"
-        android:textSize="15dp"/>
+        android:layout_width="153dp"
+        android:layout_height="41dp"
+        android:textSize="15dp"
+        android:layout_weight="0.06" />
 </LinearLayout>
