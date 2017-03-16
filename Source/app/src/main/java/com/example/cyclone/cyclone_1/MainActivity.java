@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+
         displayDatabaseInfo();
         //LogReader mDbHelper = new LogReader(this);
 
