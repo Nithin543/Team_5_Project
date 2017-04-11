@@ -66,11 +66,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         displayDatabaseInfo();
-        //LogReader mDbHelper = new LogReader(this);
-
-        // Create and/or open a database to read from it
-
-
     }
 
     public void displayDatabaseInfo() {
@@ -82,52 +77,7 @@ public class MainActivity extends AppCompatActivity {
         LogCursorAdapter logAdapter = new LogCursorAdapter(this, logCursor);
         ListView lvlogItems = (ListView) findViewById(R.id.list_item);
         lvlogItems.setAdapter((logAdapter));
-
-      /*  String[] projection = {
-                LogContract.logEntry.Coloumn_Name_Of_Application,
-                LogContract.logEntry.Coloumn_Time_Used,
-                LogContract.logEntry.Coloumn_Image
-        };
-        String orderBy = "Time_Used DESC";
-        Cursor cursor1 = db.query(
-                LogContract.logEntry.Table_Name,
-                projection,
-                null,
-                null,
-                null,
-                null,
-                orderBy
-
-        ); */
     }
-
-
-     /*   try {
-           dispalyView.append(LogContract.logEntry.Coloumn_Name_Of_Application  + " - " +
-                                  LogContract.logEntry.Coloumn_Time_Used + LogContract.logEntry.Coloumn_Image + " \n " );
-
-            int nameColoumnIndex = cursor1.getColumnIndex(LogContract.logEntry.Coloumn_Name_Of_Application);
-            int timeColoumnIndex = cursor1.getColumnIndex(LogContract.logEntry.Coloumn_Time_Used);
-            int imageColoumnIndex = cursor1.getColumnIndex(LogContract.logEntry.Coloumn_Image);
-
-            while (cursor1.moveToNext()){
-
-                String currentName = cursor1.getString(nameColoumnIndex);
-                String curretTime = cursor1.getString(timeColoumnIndex);
-
-                byte[] image = cursor1.getBlob(imageColoumnIndex);
-
-                Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
-                imageView.setImageBitmap(bitmap);
-                dispalyView.append( currentName + " -" + curretTime);
-            }
-        } finally {
-            // Always close the cursor when you're done reading from it. This releases all its
-            // resources and makes it invalid.
-            cursor1.close();
-        }
-    } */
-
 
     public void get() throws PackageManager.NameNotFoundException {
         //  Creating an object for UsageStates class(Contains usage statistics for an app package for specific time range)
@@ -152,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
         List<UsageStats> stats = null;
 
-        stats = mUsageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, time - 2000 * 60, time);
+        stats = mUsageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, time - 24*60 * 60, time);
 
 
         if (stats != null) {
@@ -193,8 +143,6 @@ public class MainActivity extends AppCompatActivity {
                 byte[] image = stream.toByteArray();
 
                 LogReader1.insertData(AppName, AppUsageTime, image);
-
-// d3 js and pi chart
             }
 
 
@@ -264,21 +212,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 LogReader1.updateData(AppName, AppUsageTime, image);
-
-
-// d3 js and pi chart
             }
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-

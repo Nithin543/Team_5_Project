@@ -1,4 +1,0 @@
-#Fri Mar 10 15:23:57 CST 2017
-base.0=V\:\\Nithin\\Increment 2\\Source\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main
-renamed.0=classes.dex
-file.0=V\:\\Nithin\\Increment 2\\Source\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main\\classes.dex
