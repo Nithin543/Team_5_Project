@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">Cyclone_1</string>
+    <string name="app_name">Life</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_register">Register</string>
+    <string name="title_activity_interface">Interface</string>
+    <string name="title_activity_home">Home</string>
 </resources>

@@ -60,4 +60,3 @@ public class LogReader extends SQLiteOpenHelper {
         onUpgrade(db, oldVersion, newVersion);
     }
 }
-

@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.io.ByteArrayOutputStream;
 import java.util.List;
@@ -24,7 +25,7 @@ import java.util.TreeMap;
 import com.example.cyclone.cyclone_1.data.LogReader;
 
 
-public class MainActivity extends AppCompatActivity {
+public class Home extends AppCompatActivity {
 
     LogReader LogReader1 = new LogReader(this);
 
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home);
         SharedPreferences wmbPreference = PreferenceManager.getDefaultSharedPreferences(this);
 
 
@@ -65,11 +66,21 @@ public class MainActivity extends AppCompatActivity {
     public void displayDatabaseInfo() {
         // To access our database, we instantiate our subclass of SQLiteOpenHelper
         // and pass the context, which is the current activity.
+        int maxID= 0;
         SQLiteDatabase db = LogReader1.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT SUM(Time_Used) FROM logs", null);
+        if (cursor.moveToFirst()) {
+            do{
+                maxID = cursor.getInt(0);
+            }while(cursor.moveToNext());
+        }
 
-        Cursor logCursor = db.rawQuery("SELECT rowid _id,name,Time_Used,app_Image FROM logs ORDER BY Time_Used DESC", null);
+        TextView TotalView = (TextView) findViewById(R.id.Total);
+        TotalView.setText(String.valueOf(maxID)+"Min");
+
+        Cursor logCursor = db.rawQuery("SELECT rowid _id,name,Time_Used,app_Image FROM logs ORDER BY Time_Used DESC LIMIT 10", null);
         LogCursorAdapter logAdapter = new LogCursorAdapter(this, logCursor);
-        ListView lvlogItems = (ListView) findViewById(R.id.list_item);
+        ListView lvlogItems = (ListView) findViewById(R.id.Top_5);
         lvlogItems.setAdapter((logAdapter));
     }
 
