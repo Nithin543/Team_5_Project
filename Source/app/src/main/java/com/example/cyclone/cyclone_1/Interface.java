@@ -14,8 +14,6 @@ public class Interface extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_interface);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
     }
 
     public void daily_usage (View v){
@@ -23,4 +21,8 @@ public class Interface extends AppCompatActivity {
         startActivity(redirect);
     }
 
+    public void Home (View v){
+        Intent redirect = new Intent(Interface.this, Home.class);
+        startActivity(redirect);
+    }
 }

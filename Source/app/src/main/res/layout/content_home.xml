@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context="com.example.cyclone.cyclone_1.MainActivity"
+    >
+    <TextView
+        android:id="@+id/Total"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="60dp"
+        android:layout_alignParentEnd="true"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:text="Total Time Used"
+        android:fontFamily="serif"
+        android:layout_marginLeft="10dp"
+        android:textSize="20dp"
+        android:layout_marginTop="60dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/Total"
+        android:id="@+id/Total_time"
+        android:layout_marginLeft="10dp"
+        android:text="Top 10 Time used Apps"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:layout_alignParentStart="true"
+        android:id="@+id/Top_5"
+        android:layout_below="@id/Total_time"/>
+
+</RelativeLayout>
